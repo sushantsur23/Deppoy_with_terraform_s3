@@ -1,3 +1,3 @@
 output "website_endpoint" {
-  value = module.static_website.website_endpoint
+  value = aws_s3_bucket_website_configuration.website.website_endpoint
 }

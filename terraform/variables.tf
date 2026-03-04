@@ -1,4 +1,5 @@
 variable "bucketname" {
-  type    = string
-  default = "sushant2026-demo2"
+  description = "Name of the S3 bucket"
+  type        = string
+  default     = "sushant-terraform-static-website-2026"
 }
