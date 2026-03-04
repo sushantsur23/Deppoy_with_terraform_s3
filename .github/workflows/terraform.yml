@@ -11,13 +11,12 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: terraform
-
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v3
+
+      - name: List Files
+        run: ls -R
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
