@@ -32,28 +32,27 @@ Public Website Endpoint
 The website is hosted using Amazon S3 Static Website Hosting.
 
 ## 📂 Project Structure
-terraform-s3-static-website
-│
-├── provider.tf
-├── main.tf
-├── variables.tf
-├── outputs.tf
-│
-├── index.html
-├── error.html
-├── profile.png
-│
+.
+├── src
+│   ├── error.html
+│   ├── index.html
+│   └── profile.png
+├── terraform
+│   ├── main.tf
+│   ├── variables.tf
+│   └── outputs.tf
+├── LICENSE
 └── README.md
-
 
 File Description
 
 | File           | Purpose                                     |
 | -------------- | ------------------------------------------- |
-| `provider.tf`  | Defines AWS provider configuration          |
+| `terraform/`   | Directory for Terraform configuration files.|
 | `main.tf`      | Creates S3 bucket and website configuration |
 | `variables.tf` | Stores Terraform variables                  |
 | `outputs.tf`   | Displays website endpoint                   |
+| `src/`         | Directory for website source files.         |
 | `index.html`   | Main website page                           |
 | `error.html`   | Error page                                  |
 | `profile.png`  | Sample image used in the website            |
@@ -83,8 +82,9 @@ aws configure
 
 ## 🏗 Step 1: Initialize Terraform
 
-Initialize Terraform to download required provider plugins.
+`cd` into the `terraform` directory and initialize Terraform to download required provider plugins.
 
+cd terraform
 terraform init
 
 This will download the AWS provider plugin.
@@ -150,7 +150,7 @@ Example resource:
 resource "aws_s3_object" "index" {
   bucket = aws_s3_bucket.mybucket.id
   key    = "index.html"
-  source = "index.html"
+  source = "../src/index.html"
 
   acl          = "public-read"
   content_type = "text/html"
@@ -210,7 +210,7 @@ www.mywebsite.com → S3 Website Endpoint
 
 ### 🔄 Destroy Infrastructure
 
-To remove all resources:
+To remove all resources, run the following command from within the `terraform` directory:
 terraform destroy
 
 Terraform will delete:
